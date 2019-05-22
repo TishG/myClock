@@ -1,5 +1,6 @@
 import React from "react";
 import BackgroundColorContext from "../contexts/BackgroundColorContext";
+import Color from "./Color";
 
 class ColorChooser extends React.Component {
   static contextType = BackgroundColorContext;
@@ -21,33 +22,11 @@ class ColorChooser extends React.Component {
     };
   };
   render() {
-    const { visibility, onColorChange } = this.context;
+    const { visibility } = this.context;
     return (
-      <div
-        id="colorBoxContainer"
-        style={this.renderContainerStyles(visibility)}
-      >
+      <div style={this.renderContainerStyles(visibility)}>
         <span style={this.renderSpanStyles()}>Choose a background color:</span>
-        <div
-          className="colorBox"
-          style={{ backgroundColor: "#FF4136" }}
-          onClick={() => onColorChange("#FF4136")}
-        />
-        <div
-          className="colorBox"
-          style={{ backgroundColor: "#0074D9" }}
-          onClick={() => onColorChange("#0074D9")}
-        />
-        <div
-          className="colorBox"
-          style={{ backgroundColor: "#3D9970" }}
-          onClick={() => onColorChange("#3D9970")}
-        />
-        <div
-          className="colorBox"
-          style={{ backgroundColor: "#B10DC9" }}
-          onClick={() => onColorChange("#B10DC9")}
-        />
+        <Color />
       </div>
     );
   }

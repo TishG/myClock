@@ -6,16 +6,25 @@ class Clock extends React.Component {
 
   componentDidMount = () => {
     this.timeInterval = setInterval(() => this.context.onTimeDisplay(), 1000);
+    this.dateInterval = setInterval(() => this.context.onDateDisplay(), 1000);
   };
 
   componentWillUnmount = () => {
     clearInterval(this.timeInterval);
+    clearInterval(this.dateeInterval);
+  };
+  renderClockStyles = () => {
+    return {
+      display: "flex",
+      flexDirection: "column"
+    }
   };
   render() {
-    const { time } = this.context;
+    const { time, date } = this.context;
     return (
-      <div id="clockComponent">
+      <div id="clockComponent" style={this.renderClockStyles()}>
         <h1>{time}</h1>
+        <h3>{date}</h3>
       </div>
     );
   }

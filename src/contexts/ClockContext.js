@@ -4,7 +4,12 @@ const Context = React.createContext();
 
 export class ClockStore extends React.Component {
   state = {
-    time: new Date().toLocaleTimeString()
+    time: new Date().toLocaleTimeString(),
+    date: new Date()
+      .toUTCString()
+      .split(" ")
+      .slice(0, 4)
+      .join(" ")
   };
 
   onTimeDisplay = () => {
@@ -12,10 +17,24 @@ export class ClockStore extends React.Component {
       time: new Date().toLocaleTimeString()
     });
   };
+  onDateDisplay = () => {
+    this.setState({
+      date: new Date()
+        .toUTCString()
+        .split(" ")
+        .slice(0, 4)
+        .join(" ")
+    });
+  };
   render() {
+    console.log(this.state.date);
     return (
       <Context.Provider
-        value={{ ...this.state, onTimeDisplay: this.onTimeDisplay }}
+        value={{
+          ...this.state,
+          onTimeDisplay: this.onTimeDisplay,
+          onDateDisplay: this.onDateDisplay
+        }}
       >
         {this.props.children}
       </Context.Provider>
